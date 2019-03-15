@@ -10,6 +10,7 @@ jobs:
       - run:
           name: docker build
           command: |
+            set -ex
             apt-get update
             apt-get install -y golang
             export PATH=$(go env GOPATH)/bin:$PATH
