@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/buildpack-deps:stretch
+      - image: buildpack-deps:cosmic
     working_directory: ~/repo
     steps:
       - checkout
@@ -10,8 +10,8 @@ jobs:
       - run:
           name: docker build
           command: |
-            sudo apt-get update
-            sudo apt-get install -y golang
+            apt-get update
+            apt-get install -y golang
             export PATH=$(go env GOPATH)/bin:$PATH
             mkdir -p $(go env GOPATH)/bin
             mkdir -p $(go env GOPATH)/src/github.com/cosmopetrich
