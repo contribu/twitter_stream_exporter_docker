@@ -10,6 +10,22 @@ jobs:
       - run:
           name: docker build
           command: |
+            apt-get update
+            apt-get install -y golang
+            export PATH=$(go env GOPATH)/bin:$PATH
+            mkdir -p $(go env GOPATH)/bin
+            mkdir -p $(go env GOPATH)/src/github.com/cosmopetrich
+            cd $(go env GOPATH)/src/github.com/cosmopetrich
+            git clone -b master --single-branch --depth 1 https://github.com/cosmopetrich/twitter_stream_exporter.git
+            cd twitter_stream_exporter
+            curl https://glide.sh/get | sh
+            glide install
+            VERSION=$(git describe --always --dirty
+            SHA1=$(git rev-parse --short --verify HEAD
+            BUILD_DATE=$(date -u +%F-%T
+            go build -ldflags "-extldflags -static -X main.VERSION=${VERSION} -X main.COMMIT_SHA1=${SHA1} -X main.BUILD_DATE=${BUILD_DATE}"
+            mv twitter_stream_exporter ~/repo
+            cd ~/repo
             docker build -t build .
       - deploy:
           name: deploy
