@@ -12,7 +12,8 @@ docker run --rm -it \
     -e "TWITTER_ACCESS_SECRET=..." \
     -e "TWITTER_CONSUMER_KEY=..." \
     -e "TWITTER_CONSUMER_SECRET=..." \
-    contribu/twitter_stream_exporter_docker twitter_stream_exporter
+    contribu/twitter_stream_exporter_docker \
+    twitter_stream_exporter -twitter.track 'akeyword,anotherkeyword'
 ```
 
 ## LICENSE
