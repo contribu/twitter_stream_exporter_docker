@@ -17,8 +17,9 @@ jobs:
             mkdir -p $(go env GOPATH)/bin
             mkdir -p $(go env GOPATH)/src/github.com/cosmopetrich
             cd $(go env GOPATH)/src/github.com/cosmopetrich
-            git clone -b master --single-branch --depth 1 https://github.com/cosmopetrich/twitter_stream_exporter.git
+            git clone https://github.com/cosmopetrich/twitter_stream_exporter.git
             cd twitter_stream_exporter
+            git checkout fe99cec0b60986e1057e1133e467097d1488decd
             curl https://glide.sh/get | sh
             glide install
             export GOOS=linux
