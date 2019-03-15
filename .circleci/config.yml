@@ -10,8 +10,8 @@ jobs:
       - run:
           name: docker build
           command: |
-            apt-get update
-            apt-get install -y golang
+            sudo apt-get update
+            sudo apt-get install -y golang
             export PATH=$(go env GOPATH)/bin:$PATH
             mkdir -p $(go env GOPATH)/bin
             mkdir -p $(go env GOPATH)/src/github.com/cosmopetrich
