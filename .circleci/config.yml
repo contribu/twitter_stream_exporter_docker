@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: buildpack-deps:cosmic
+      - image: contribu/buildenv_docker:cosmic
     working_directory: ~/repo
     steps:
       - checkout
